@@ -1,0 +1,20 @@
+[Interface]
+# Приватный ключ сервера (сгенерировать)
+PrivateKey = <BASE64_PRIVATE_KEY>
+
+# IP адрес в туннеле
+Address = 10.0.0.1/24
+
+# Порт для подключений
+ListenPort = 51820
+
+# Правила маршрутизации
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT
+
+[Peer]
+# Публичный ключ клиента
+PublicKey = <CLIENT_PUBLIC_KEY>
+
+# Разрешенные IP
+AllowedIPs = 0.0.0.0/0
